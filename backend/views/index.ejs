@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for Home Icon -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <h1>LATEST POSTS</h1>
+
+  <!-- Home Icon Button -->
+  <a href="/home" class="home-icon" title="Go to Home">
+    <i class="fas fa-home"></i> Home
+  </a>
+
+  <% for (let post of posts) { %>
+    <div class="cl">
+      <h2>USERNAME : <%= post.username %></h2>
+      <h2>CONTENT : <%= post.content %></h2>
+      <a href="http://localhost:1000/posts/<%= post.id %>">Open file</a>
+      <a href="http://localhost:1000/posts/<%= post.id %>/edit">EDIT file</a>
+      <form method="post" action="/posts/<%= post.id %>?_method=DELETE">
+        <button>DELETE POST</button>
+      </form>
+    </div>
+  <% } %>
+
+  <a href="http://localhost:1000/posts/new">Create New post</a>
+
+  <!-- Inline style to match existing button/link look -->
+  <style>
+    .home-icon {
+      display: inline-block;
+      text-align: center;
+      background-color: #4da3ff;
+      color: #fff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0 auto 30px;
+      text-decoration: none;
+      transition: background-color 0.3s;
+      margin-bottom: 30px;
+      position: fixed;
+      top: 30px;
+      left: 30px;
+      z-index: 999;
+    }
+
+    .home-icon:hover {
+      background-color: #1e90ff;
+    }
+
+    .home-icon i {
+      margin-right: 6px;
+    }
+  </style>
+</body>
+</html>

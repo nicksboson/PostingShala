@@ -1,0 +1,89 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1c1c1e;
+    color: #e5e5e5;
+    padding: 40px;
+}
+
+/* Main Title */
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+    color: #ffffff;
+}
+
+/* Post Container */
+.cl {
+    background-color: #2a2a2c;
+    border: 1px solid #3a3a3c;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 25px;
+    transition: box-shadow 0.2s ease;
+}
+
+.cl:hover {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+}
+
+.cl h2 {
+    margin-bottom: 10px;
+    color: #f2f2f2;
+    font-size: 1.2rem;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #4da3ff;
+    margin-right: 16px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #1e90ff;
+}
+
+/* Delete Button */
+button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #c0392b;
+}
+
+/* Create New Post Link */
+a[href$="/new"] {
+    display: block;
+    text-align: center;
+    background-color: #4da3ff;
+    color: #fff;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 1rem;
+    width: 180px;
+    margin: 30px auto 0;
+    transition: background-color 0.3s;
+}
+
+a[href$="/new"]:hover {
+    background-color: #1e90ff;
+}

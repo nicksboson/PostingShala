@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Post Detail</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1c1c1e;
+      color: #e5e5e5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .cl1 {
+      background-color: #2a2a2c;
+      border: 1px solid #3a3a3c;
+      border-radius: 10px;
+      padding: 30px;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.05);
+    }
+
+    .cl1 h2 {
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      color: #f2f2f2;
+      line-height: 1.5;
+      word-wrap: break-word;
+    }
+
+    .label {
+      color: #4da3ff;
+      font-weight: 600;
+      margin-right: 6px;
+    }
+
+    .not-found {
+      font-size: 1.5rem;
+      color: #ff5757;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <% if (post) { %>
+    <div class="cl1">
+      <h2><span class="label">Username:</span> <%= post.username %></h2>
+      <h2><span class="label">Content:</span> <%= post.content %></h2>
+      <h2><span class="label">ID:</span> <%= post.id %></h2>
+    </div>
+  <% } else { %>
+    <h2 class="not-found">Post not found</h2>
+  <% } %>
+</body>
+</html>
