@@ -77,7 +77,7 @@ app.delete("/posts/:id",(req,res)=>{
 app.get("/home",(req,res)=>{
     res.render('home.ejs');
 })
-const port = 1000;
+const port = process.env.PORT || 1000;
 
 app.listen(port,()=>{
     console.log("listening");
