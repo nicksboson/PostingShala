@@ -20,15 +20,15 @@
     <div class="cl">
       <h2>USERNAME : <%= post.username %></h2>
       <h2>CONTENT : <%= post.content %></h2>
-      <a href="http://localhost:1000/posts/<%= post.id %>">Open file</a>
-      <a href="http://localhost:1000/posts/<%= post.id %>/edit">EDIT file</a>
+      <a href="https://postingshala.onrender.com/posts/<%= post.id %>">Open file</a>
+      <a href="https://postingshala.onrender.com/posts/<%= post.id %>/edit">EDIT file</a>
       <form method="post" action="/posts/<%= post.id %>?_method=DELETE">
         <button>DELETE POST</button>
       </form>
     </div>
   <% } %>
 
-  <a href="http://localhost:1000/posts/new">Create New post</a>
+  <a href="https://postingshala.onrender.com/posts/new">Create New post</a>
 
   <!-- Inline style to match existing button/link look -->
   <style>
