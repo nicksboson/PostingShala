@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PostingShala</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <title>PostingShala - Share Your Thoughts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -16,16 +17,16 @@
       width: 100%;
       height: 100%;
       font-family: 'Montserrat', sans-serif;
-      background: #121212;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d3436 100%);
       color: #e0e0e0;
-      overflow: hidden;
+      overflow-x: hidden;
     }
 
     #loader {
       position: fixed;
       width: 100%;
       height: 100%;
-      background: #121212;
+      background: #1a1a1a;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -33,11 +34,11 @@
     }
 
     .spinner {
-      border: 6px solid #2c2c2c;
-      border-top: 6px solid #888;
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-left-color: #3498db;
       border-radius: 50%;
-      width: 50px;
-      height: 50px;
       animation: spin 1s linear infinite;
     }
 
@@ -47,7 +48,7 @@
 
     .main-content {
       display: none;
-      height: 100%;
+      min-height: 100vh;
       flex-direction: column;
     }
 
@@ -55,72 +56,163 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 50px;
-      background: #1e1e1e;
-      border-bottom: 1px solid #2c2c2c;
+      padding: 25px 50px;
+      background: rgba(30, 30, 30, 0.8);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 100;
     }
 
     .logo {
-      height: 40px;
+      height: 45px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(52, 152, 219, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 30px;
+      gap: 40px;
     }
 
     nav ul li a {
       color: #e0e0e0;
       text-decoration: none;
       font-weight: 500;
-      transition: color 0.3s;
+      font-size: 1.1rem;
+      transition: all 0.3s;
+      position: relative;
+      padding: 5px 0;
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #3498db, #2ecc71);
+      transition: width 0.3s ease;
     }
 
     nav ul li a:hover {
-      color: #bbbbbb;
+      color: #ffffff;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
     }
 
     .landing-container {
       text-align: center;
-      padding: 40px;
-      margin-top: auto;
-      margin-bottom: auto;
-      background: #1c1c1c;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      padding: 60px 40px;
+      margin: 120px auto 60px;
+      background: rgba(28, 28, 28, 0.8);
+      backdrop-filter: blur(10px);
+      max-width: 800px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
       animation: fadeIn 1.5s ease;
+      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
     .title {
-      font-size: 2.5rem;
-      color: #f0f0f0;
-      margin-bottom: 20px;
+      font-size: 3.5rem;
+      background: linear-gradient(45deg, #3498db, #2ecc71);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 30px;
+      font-weight: 700;
     }
 
     .subtitle {
+      font-size: 1.4rem;
+      line-height: 1.6;
+      color: #b3b3b3;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .tagline {
       font-size: 1.2rem;
-      margin-bottom: 30px;
-      color: #aaaaaa;
+      color: #888;
+      margin-bottom: 40px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
     }
 
     .start-btn {
-      background-color: #ffffff;
+      background: linear-gradient(45deg, #3498db, #2ecc71);
       border: none;
-      color: #121212;
-      padding: 14px 34px;
-      font-size: 1.1rem;
-      border-radius: 8px;
+      color: white;
+      padding: 16px 40px;
+      font-size: 1.2rem;
+      border-radius: 12px;
       cursor: pointer;
-      font-weight: bold;
+      font-weight: 600;
       transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .start-btn:hover {
-      background-color: #dddddd;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+    }
+
+    .start-btn:active {
+      transform: translateY(-1px);
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-top: 50px;
+      padding: 0 20px;
+    }
+
+    .feature {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature i {
+      font-size: 2.5rem;
+      color: #3498db;
+      margin-bottom: 20px;
+    }
+
+    .feature h3 {
+      color: #ffffff;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+
+    .feature p {
+      color: #b3b3b3;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
     @keyframes fadeIn {
@@ -133,6 +225,33 @@
         transform: translateY(0);
       }
     }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 20px;
+      }
+
+      nav ul {
+        gap: 20px;
+      }
+
+      .landing-container {
+        margin: 100px 20px 40px;
+        padding: 40px 20px;
+      }
+
+      .title {
+        font-size: 2.5rem;
+      }
+
+      .subtitle {
+        font-size: 1.2rem;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 </head>
 <body>
@@ -143,21 +262,41 @@
 
   <div class="main-content">
     <nav>
-      <img src="https://imgs.search.brave.com/Ehi9ZGWh1EVNzhQJn0wAo-GyLXBizt9vgOaZSP0I3vY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vaHJ3cVJw/NlFyQUtkSW1EUDBn/MEphc0J2dmxNbEhp/ZEVnSEM3OENCVXdE/by9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/WldScC9ZUzVuWlhS/MGVXbHRZV2RsL2N5/NWpiMjB2YVdRdk1U/UXkvT1RNMk9EazFN/QzkyWldOMC9iM0l2/Ylc5a1pYSnVMV052/L2JHOTFjbVoxYkMx/aWJHOWovYXkxaGJI/Qm9ZV0psZEhNdC9k/bVZqZEc5eUxXbHNi/SFZ6L2RISmhkR2x2/Ymk1cWNHY18vY3ow/Mk1USjROakV5Sm5j/OS9NQ1pyUFRJd0pt/TTlka1p4L05qSkVh/QzFoY0RZMVJqUk8v/TlU5dVVIRmthWEF4/VkhwbC9NVzVFUmxC/ck4yMHliM0JHL1JV/MHpUVDA" alt="Logo" class="logo" style="border-radius: 50%;" />
+      <img src="https://imgs.search.brave.com/Ehi9ZGWh1EVNzhQJn0wAo-GyLXBizt9vgOaZSP0I3vY/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWdz/LnNlYXJjaC5icmF2/ZS5jb20vaHJ3cVJw/NlFyQUtkSW1EUDBn/MEphc0J2dmxNbEhp/ZEVnSEM3OENCVXdE/by9yczpmaXQ6NTAw/OjA6MDowL2c6Y2Uv/YUhSMGNITTZMeTl0/WldScC9ZUzVuWlhS/MGVXbHRZV2RsL2N5/NWpiMjB2YVdRdk1U/UXkvT1RNMk9EazFN/QzkyWldOMC9iM0l2/Ylc5a1pYSnVMV052/L2JHOTFjbVoxYkMx/aWJHOWovYXkxaGJI/Qm9ZV0psZEhNdC9k/bVZqZEc5eUxXbHNi/SFZ6L2RISmhkR2x2/Ymk1cWNHY18vY3ow/Mk1USjROakV5Sm5j/OS9NQ1pyUFRJd0pt/TTlka1p4L05qSkVh/QzFoY0RZMVJqUk8v/TlU5dVVIRmthWEF4/VkhwbC9NVzVFUmxC/ck4yMHliM0JHL1JV/MHpUVDA" alt="Logo" class="logo" />
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Features</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#"><i class="fas fa-star"></i> Features</a></li>
+        <li><a href="#"><i class="fas fa-envelope"></i> Contact</a></li>
       </ul>
     </nav>
 
     <div class="landing-container">
       <h1 class="title">Welcome to PostingShala</h1>
-      <h2>A posting platform where users can create update and delete their posts and share them</h2>
-      <br>
-      <p class="subtitle">Simple • Elegant • Efficient</p>
-      <form action="https://postingshala.onrender.com/posts"><button class="start-btn" >Get Started</button></form>
-      
+      <h2 class="subtitle">A modern platform where you can share your thoughts, experiences, and ideas with the world. Create, update, and manage your posts with ease.</h2>
+      <p class="tagline">Simple • Elegant • Efficient</p>
+      <form action="/posts">
+        <button class="start-btn">
+          <i class="fas fa-rocket"></i> Get Started
+        </button>
+      </form>
+
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-pen-fancy"></i>
+          <h3>Create Posts</h3>
+          <p>Share your thoughts and ideas with a beautiful, easy-to-use interface</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-edit"></i>
+          <h3>Edit & Update</h3>
+          <p>Modify your posts anytime with our intuitive editing tools</p>
+        </div>
+        <div class="feature">
+          <i class="fas fa-share-alt"></i>
+          <h3>Share & Connect</h3>
+          <p>Connect with others and share your content across platforms</p>
+        </div>
+      </div>
     </div>
   </div>
 
