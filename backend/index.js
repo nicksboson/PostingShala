@@ -89,11 +89,11 @@ app.get("/posts/new",(req,res)=>{
 })
 
 app.post("/posts",(req,res)=>{
-    let {username,content}= req.body;
-    let id = uuidv4();
-    posts.push({username,content,id});
+    const {username, content} = req.body.post;
+    const id = uuidv4();
+    const createdAt = new Date();
+    posts.push({id, username, content, createdAt});
     res.redirect("/posts");
-
 });
 app.get("/posts/:id", (req, res) => {
     const { id } = req.params;
@@ -108,6 +108,9 @@ app.get("/posts/:id", (req, res) => {
 app.get("/posts/:id/edit",(req,res)=>{
     const { id } = req.params;
     const post = posts.find((p) => p.id === id);
+    if (!post) {
+        return res.status(404).send("Post not found");
+    }
     res.render("newcontent.ejs",{post});
 })
 
