@@ -178,7 +178,7 @@
             </a>
         </div>
 
-        <form action="/posts/<%= post.id %>?_method=PUT" method="POST">
+        <form action="/posts/<%= post.id %>?_method=PATCH" method="POST">
             <div class="form-group">
                 <label for="username">Username</label>
                 <input type="text" id="username" name="post[username]" value="<%= post.username %>" required>

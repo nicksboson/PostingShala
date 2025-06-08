@@ -116,11 +116,14 @@ app.get("/posts/:id/edit",(req,res)=>{
 
 app.patch("/posts/:id",(req,res)=>{
     const { id } = req.params;
-    let newcontent = req.body.content;
+    const { username, content } = req.body.post;
     const post = posts.find((p) => p.id === id);
-    post.content= newcontent;
+    if (!post) {
+        return res.status(404).send("Post not found");
+    }
+    post.username = username;
+    post.content = content;
     res.redirect("/posts");
-
 });
 
 app.delete("/posts/:id",(req,res)=>{
