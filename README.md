@@ -24,7 +24,7 @@ A simple full-stack web application inspired by **Quora**, where users can creat
 
 ---
 ---
-LINK : https://postingshala.onrender.com/home
+LINK : https://postingshala.onrender.com
 ---
 
 
