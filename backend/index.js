@@ -76,7 +76,9 @@ let posts = [
         createdAt: new Date("2024-03-06T09:30:00")
     }
 ];
-
+app.get("/",(req,res)=>{
+    res.render('home.ejs');
+});
 app.get("/posts",(req,res)=>{
     res.render("index.ejs",{posts});
 });
@@ -124,9 +126,7 @@ app.delete("/posts/:id",(req,res)=>{
      res.redirect("/posts");
 });
 
-app.get("/home",(req,res)=>{
-    res.render('home.ejs');
-})
+
 const port = process.env.PORT || 1000;
 
 app.listen(port,()=>{
